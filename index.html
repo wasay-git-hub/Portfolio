@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdul Wasay — AI & Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F7F5F0;
+      --bg2: #EFECEA;
+      --surface: #FFFFFF;
+      --border: #DDD9D0;
+      --text: #1A1A2E;
+      --muted: #6B7280;
+      --accent: #2563EB;
+      --accent2: #0EA5E9;
+      --accent-light: #EFF6FF;
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Space Grotesk', sans-serif;
+      --body: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Graph paper background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(247, 245, 240, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* HERO */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 60px 80px;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--display);
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-name span {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-role {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      min-height: 28px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-bio {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      padding: 13px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      border: 1.5px solid var(--border);
+      padding: 13px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* STATUS BADGE */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.6;
+        transform: scale(0.85);
+      }
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 56px;
+      line-height: 1.1;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 100px;
+    }
+
+    /* EXPERIENCE */
+    .exp-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .exp-card:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-meta {
+      padding-top: 4px;
+    }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .exp-location {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--accent-light);
+      border-radius: 4px;
+      padding: 3px 8px;
+      display: inline-block;
+    }
+
+    .exp-title {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .exp-company {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .exp-bullets li {
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 12px;
+      top: 2px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: #c7d7f5;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.09);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .project-name {
+      font-family: var(--display);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .project-link-icon {
+      color: var(--muted);
+      font-size: 18px;
+      transition: color 0.2s;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .project-card:hover .project-link-icon {
+      color: var(--accent);
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: var(--accent-light);
+      border-radius: 3px;
+      padding: 3px 8px;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .cert-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .cert-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .cert-name {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 3px;
+    }
+
+    .cert-issuer {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--text);
+      border-radius: 20px;
+      padding: 80px;
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    #contact .section-label {
+      color: var(--accent2);
+    }
+
+    #contact .section-title {
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .contact-subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 48px;
+      max-width: 440px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .form-group label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 7px;
+      padding: 13px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      resize: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+    }
+
+    .btn-send {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 7px;
+      padding: 14px 28px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
+    }
+
+    .btn-send:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn-send:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      justify-content: flex-start;
+      padding-top: 8px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.75);
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: #fff;
+    }
+
+    .contact-link-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: background 0.2s;
+    }
+
+    .contact-link:hover .contact-link-icon {
+      background: rgba(37, 99, 235, 0.3);
+    }
+
+    .contact-link-text {
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .contact-link-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      font-family: var(--mono);
+    }
+
+    /* FORM FEEDBACK */
+    .form-feedback {
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    .form-feedback.success {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      display: block;
+    }
+
+    .form-feedback.error {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      display: block;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 60px;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer span {
+      color: var(--accent);
+    }
+
+    /* HONOR */
+    .honor-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .honor-card strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* SCROLL ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      #hero,
+      section {
+        padding: 80px 24px 60px;
+      }
+
+      #contact {
+        padding: 48px 28px;
+        margin: 0 16px 60px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exp-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      footer {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">aw.dev</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" style="max-width:none; padding:120px 60px 80px;">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Based in Islamabad, Pakistan</div>
+      <h1 class="hero-name">Abdul<br><span>Wasay</span></h1>
+      <div class="hero-role" id="typewriter"><span class="cursor"></span></div>
+      <p class="hero-bio">
+        AI & Software Engineer building production-grade ML systems, intelligent backends, and data-driven applications.
+        Currently pursuing BS AI at NUST while working as a Machine Learning Engineer.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="fade-up">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">Who I Am</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+      <div>
+        <p style="font-size:16px; color:var(--muted); line-height:1.85; margin-bottom:20px;">
+          I'm an AI & Software Engineer with a passion for building systems that are both intelligent and reliable. From
+          designing MLOps pipelines to full-stack platforms, I care about code that ships cleanly and scales.
+        </p>
+        <p style="font-size:16px; color:var(--muted); line-height:1.85;">
+          Currently a 3rd-year BS Artificial Intelligence student at <strong style="color:var(--text);">NUST
+            Islamabad</strong>. I've shipped blockchain voting systems, RAG platforms, and production-grade MLOps
+          infrastructure.
+        </p>
+      </div>
+      <div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:28px;">
+          <div
+            style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:20px;">
+            At a glance</div>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span style="font-size:18px;">🎓</span>
+              <div>
+                <div style="font-family:var(--display); font-size:14px; font-weight:600; color:var(--text);">BS
+                  Artificial Intelligence</div>
+                <div style="font-size:12px; color:var(--muted); font-family:var(--mono);">NUST · 2024–Present</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span style="font-size:18px;">💼</span>
+              <div>
+                <div style="font-family:var(--display); font-size:14px; font-weight:600; color:var(--text);">ML Engineer
+                  @ FlyRank AI</div>
+                <div style="font-size:12px; color:var(--muted); font-family:var(--mono);">Chicago, US · Remote · June
+                  2026–Present</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span style="font-size:18px;">🏆</span>
+              <div>
+                <div style="font-family:var(--display); font-size:14px; font-weight:600; color:var(--text);">2nd Place —
+                  Kaggle CSP Competition</div>
+                <div style="font-size:12px; color:var(--muted); font-family:var(--mono);">International · NUST × HSBI
+                  Germany</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span style="font-size:18px;">📬</span>
+              <div>
+                <div style="font-family:var(--display); font-size:14px; font-weight:600; color:var(--text);">
+                  wasay3251@gmail.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="position:relative;z-index:1; max-width:1100px; margin:0 auto;"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="fade-up">
+    <div class="section-label">Work History</div>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <div class="exp-date">June 2026 — Present</div>
+        <div class="exp-location">Remote · Chicago, US</div>
+      </div>
+      <div>
+        <div class="exp-title">Machine Learning Engineer</div>
+        <div class="exp-company">FlyRank AI</div>
+        <ul class="exp-bullets">
+          <li>Build and deploy end-to-end ML and backend systems, transforming raw data into production-ready services.
+          </li>
+          <li>Develop high-performance REST APIs using FastAPI and Flask for real-time model inference and application
+            integration.</li>
+          <li>Design and manage data pipelines using PostgreSQL, SQLite, MongoDB, and Supabase for scalable data
+            storage.</li>
+          <li>Containerize applications with Docker and implement CI/CD workflows using GitHub Actions for automated
+            deployment.</li>
+          <li>Collaborate with cross-functional teams in a remote startup environment to deliver scalable AI-powered
+            infrastructure.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="position:relative;z-index:1; max-width:1100px; margin:0 auto;"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="fade-up">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects-grid">
+      <a href="https://github.com/wasay-git-hub" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">AI Model Health<br>Monitoring System</div>
+          <div class="project-link-icon">↗</div>
+        </div>
+        <p class="project-desc">End-to-end MLOps system for retail forecasting. Containerized XGBoost pipeline with
+          FastAPI, MLFlow observability dashboard, CI/CD automation, and Supabase logging. Includes model health, system
+          health, and API stress testing.</p>
+        <div class="project-stack">
+          <span class="stack-tag">FastAPI</span>
+          <span class="stack-tag">MLFlow</span>
+          <span class="stack-tag">XGBoost</span>
+          <span class="stack-tag">Docker</span>
+          <span class="stack-tag">CI/CD</span>
+          <span class="stack-tag">Supabase</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/wasay-git-hub" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">AlphaLo</div>
+          <div class="project-link-icon">↗</div>
+        </div>
+        <p class="project-desc">RAG-based exam prep platform for university students. GPT-4 powered question generation
+          from past papers, LangChain + Pinecone vector retrieval, HuggingFace embeddings for PDF ingestion, Redis
+          caching for low latency.</p>
+        <div class="project-stack">
+          <span class="stack-tag">RAG</span>
+          <span class="stack-tag">LangChain</span>
+          <span class="stack-tag">Pinecone</span>
+          <span class="stack-tag">FastAPI</span>
+          <span class="stack-tag">MongoDB</span>
+          <span class="stack-tag">Redis</span>
+          <span class="stack-tag">React</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/wasay-git-hub" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">VoteSecure<br>Blockchain DApp</div>
+          <div class="project-link-icon">↗</div>
+        </div>
+        <p class="project-desc">Secure on-chain voting system with zero risk appetite. Full CIA triad compliance,
+          Solidity smart contracts on Ethereum, MetaMask authentication, on-chain transaction logging for
+          non-repudiation and integrity.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Solidity</span>
+          <span class="stack-tag">Ethereum</span>
+          <span class="stack-tag">Web3.js</span>
+          <span class="stack-tag">Next.js</span>
+          <span class="stack-tag">Firebase</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/wasay-git-hub" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">ServeSmart<br>E-Governance Platform</div>
+          <div class="project-link-icon">↗</div>
+        </div>
+        <p class="project-desc">Full-stack digital governance platform with appointment booking, complaint management,
+          transport services, and citizen feedback. Role-Based Access Control, secure auth, and multi-department support
+          from a centralized platform.</p>
+        <div class="project-stack">
+          <span class="stack-tag">PHP</span>
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">HTML/CSS</span>
+          <span class="stack-tag">RBAC</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider" style="position:relative;z-index:1; max-width:1100px; margin:0 auto;"></div>
+
+  <!-- SKILLS -->
+  <section id="skills" class="fade-up">
+    <div class="section-label">Technical Stack</div>
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">Java</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI / ML</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">XGBoost</span>
+          <span class="skill-tag">LangChain</span>
+          <span class="skill-tag">MLFlow</span>
+          <span class="skill-tag">Numpy</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Backend & APIs</div>
+        <div class="skill-tags">
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">Flask</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express.js</span>
+          <span class="skill-tag">SQLAlchemy</span>
+          <span class="skill-tag">Redis</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Frontend</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React.js</span>
+          <span class="skill-tag">TailwindCSS</span>
+          <span class="skill-tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Databases</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">Pinecone</span>
+          <span class="skill-tag">Supabase</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">DevOps & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">n8n</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="position:relative;z-index:1; max-width:1100px; margin:0 auto;"></div>
+
+  <!-- CERTIFICATIONS & HONORS -->
+  <section id="certs" class="fade-up">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title">Certifications & Honors</h2>
+
+    <div style="margin-bottom:48px;">
+      <div
+        style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:20px;">
+        Certifications</div>
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-icon">🧠</div>
+          <div>
+            <div class="cert-name">Supervised Machine Learning: Regression & Classification</div>
+            <div class="cert-issuer">DeepLearning.AI × Stanford Online</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🔬</div>
+          <div>
+            <div class="cert-name">Advanced Learning Algorithms</div>
+            <div class="cert-issuer">DeepLearning.AI × Stanford Online</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🤖</div>
+          <div>
+            <div class="cert-name">Unsupervised Learning, Recommenders & Reinforcement Learning</div>
+            <div class="cert-issuer">DeepLearning.AI × Stanford Online</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🐍</div>
+          <div>
+            <div class="cert-name">100 Days of Code: Complete Python Pro Bootcamp</div>
+            <div class="cert-issuer">Udemy</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">📊</div>
+          <div>
+            <div class="cert-name">Applied ML 360 Bootcamp</div>
+            <div class="cert-issuer">SINES, NUST</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🔒</div>
+          <div>
+            <div class="cert-name">Introduction to CyberSecurity</div>
+            <div class="cert-issuer">CISCO Networking Academy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div
+        style="font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:20px;">
+        Honors & Awards</div>
+      <div class="honor-card">
+        🏆 <strong>2nd Place — Kaggle CSP Competition</strong><br>
+        Built a Constraint Satisfaction Problem solver for logic puzzles. Collaborated internationally with peers from
+        SEECS-NUST and HSBI, Germany.
+      </div>
+      <div class="honor-card">
+        🤝 <strong>Volunteer — Alkhidmat Foundation Pakistan</strong><br>
+        Successfully volunteered for the 2025 Flood Relief campaign.
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding:0; max-width:none;">
+    <div id="contact"
+      style="background:var(--text); border-radius:20px; padding:80px; max-width:1100px; margin:0 auto 80px; position:relative; z-index:1; overflow:hidden;">
+      <div
+        style="position:absolute; top:-80px; right:-80px; width:300px; height:300px; background:radial-gradient(circle, rgba(37,99,235,0.25), transparent 70%); pointer-events:none;">
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="section-label" style="color:var(--accent2);">Get in Touch</div>
+          <h2 class="section-title" style="color:#fff; margin-bottom:16px;">Let's Work Together</h2>
+          <p class="contact-subtitle" style="max-width:none;">Open to internships, freelance projects, and full-time opportunities. Reach out via email or connect with me on social platforms.</p>
+        </div>
+
+        <div class="contact-info">
+          <a href="mailto:wasay3251@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <div>
+              <div class="contact-link-text">wasay3251@gmail.com</div>
+              <div class="contact-link-sub">Primary email</div>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/abdul-wasay-1b6052329/" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            <div>
+              <div class="contact-link-text">LinkedIn</div>
+              <div class="contact-link-sub">linkedin.com/in/abdul-wasay-1b6052329</div>
+            </div>
+          </a>
+          <a href="https://github.com/wasay-git-hub" target="_blank" class="contact-link">
+            <div class="contact-link-icon">⚡</div>
+            <div>
+              <div class="contact-link-text">GitHub</div>
+              <div class="contact-link-sub">github.com/wasay-git-hub</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Built by <span>Abdul Wasay</span> · AI & Software Engineer · Islamabad, Pakistan
+  </footer>
+
+  <script>
+    // TYPEWRITER
+    const roles = [
+      "Machine Learning Engineer",
+      "AI & Backend Engineer",
+      "MLOps & LLM Specialist",
+      "Full-Stack Developer",
+    ];
+    let ri = 0, ci = 0, deleting = false;
+    const tw = document.getElementById('typewriter');
+
+    function type() {
+      const current = roles[ri];
+      if (!deleting) {
+        ci++;
+        tw.innerHTML = current.slice(0, ci) + '<span class="cursor"></span>';
+        if (ci === current.length) {
+          deleting = true;
+          setTimeout(type, 1800);
+          return;
+        }
+      } else {
+        ci--;
+        tw.innerHTML = current.slice(0, ci) + '<span class="cursor"></span>';
+        if (ci === 0) {
+          deleting = false;
+          ri = (ri + 1) % roles.length;
+        }
+      }
+      setTimeout(type, deleting ? 40 : 65);
+    }
+    setTimeout(type, 800);
+
+    // SCROLL ANIMATIONS
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+
+  </script>
+</body>
+
+</html>
